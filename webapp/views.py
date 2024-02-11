@@ -8,6 +8,8 @@ from django.core.mail import send_mail
 from django.conf import settings
 from webapp.models import Article
 
+from webapp.forms import ContactForm
+
 import sys, os
 # Create your views here by defining a function
 
@@ -84,14 +86,32 @@ def search(request:HttpRequest):
 
 
 def contact(request:HttpRequest):
-    if request.method=='POST': #The action has to call this contact function
+    # if request.method=='POST': #The action has to call this contact function
 
-        subject = request.POST['subject']
-        message = request.POST['message'] + ' ' + request.POST['email']
-        email_from = settings.EMAIL_HOST_USER
-        recipient_list = ['leinaxd@gmail.com']
+    #     subject = request.POST['subject']
+    #     message = request.POST['message'] + ' ' + request.POST['email']
+    #     email_from = settings.EMAIL_HOST_USER
+    #     recipient_list = ['leinaxd@gmail.com']
 
-        send_mail(subject, message, email_from, recipient_list, fail_silently=False)
+    #     send_mail(subject, message, email_from, recipient_list, fail_silently=False)
 
-        return render(request, 'thank_you.html')
-    return render(request, 'contact.html', )
+    #     return render(request, 'thank_you.html')
+    # return render(request, 'contact.html', )
+
+    if request.method == 'POST':
+        my_form = ContactForm(request.POST)
+        if my_form.is_valid():
+            inform:dict = my_form.cleaned_data
+
+            subject = inform['subject']
+            message = inform['message'] + ' ' + inform['email']
+            email_host = settings.EMAIL_HOST_USER
+            recipient_list = ['leinaxd@gmail.com']
+
+            send_mail(subject, message, email_host, recipient_list,)
+
+            return render(request, 'thank_you.html')
+    else:
+        my_form = ContactForm() #build an html from here
+
+    return render(request, 'form_contact.html', {'form':my_form})
