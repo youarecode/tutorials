@@ -115,3 +115,5 @@ def contact(request:HttpRequest):
         my_form = ContactForm() #build an html from here
 
     return render(request, 'form_contact.html', {'form':my_form})
+
+
