@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+
+<html>
+
+
+<head>
+    <title>
+        {% block title %}
+        {% endblock %}
+    </title>
+
+</head>
+
+<style>
+    #title {
+        background-color: darkolivegreen;
+        color: white;
+        text-align: center;
+    }
+    #footer{
+        background-color: darkolivegreen;
+        color: white;
+        text-align: right;
+    }
+</style>
+
+<body>
+    <h1 id=title>My personal website</h1>
+    {% include 'top_bar.html'%}
+    <h3>Machine Learning, Control Theory and Electronic Design</h3>
+
+    {% block content %}
+    {% endblock%}
+
+    <p id="footer">Thank you for your visit</p>
+</body>
+</html>

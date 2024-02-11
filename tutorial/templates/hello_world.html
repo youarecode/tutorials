@@ -1,0 +1,48 @@
+
+<html>
+    <body>
+        {# Embedded a navigation bar inside the main web #}
+        {% include 'top_bar.html' %}
+
+        <h1 style="color:red">Hello World! and beyond!</h1>
+        <p>The server time was: <strong>{{time}}</strong></p> 
+        <p>Access to member. time.day= <strong>{{time.day}}</strong></p>
+        <p>showing the list <strong>themes=[</strong>
+            <ul>
+            {% if themes %}
+                {% for i in themes %}
+                <li>{{i.upper}}</li>
+                {% endfor %}
+            {% else %}
+                <p>There's no items to show</p>
+            {% endif%}
+            </ul><strong>]</strong>
+        </p>
+        <p>Access to a list. themes.0: <strong>{{themes.0}}</strong></p>
+        <p><strong>Hierarchy of calling access for django.</strong></p>
+        <ol>
+            <li>Is it a dictionary?</li>
+            <li>Is it an attribute?</li>
+            <li>Is it a method?</li>
+            <li>Is it a list index?</li>
+        </ol>
+        {# Don't worry designer, ignore this part #}
+        {% if time.day > 15%}
+            <p>Congratulations today is {{time.day}} and you are at the <strong>ending</strong> of this month</p>
+        {% else %}
+            <p>Congratulations today is {{time.day}} and you are at the <strong>begining</strong> of the month</p>
+        {% endif %}
+
+        {% comment %}
+            All of this will be ignored
+
+        {% endcomment %}
+
+        <p>Filters. </p>
+        <ul>
+            <li> themes.0.upper: {{themes.0.upper}} </li>
+            <li> themes.0|upper: {{themes.0|upper}} </li>
+            <li> themes.0|first: {{themes.0|first}} </li>
+        </ul>
+    </body>
+</html>
