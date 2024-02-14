@@ -1,0 +1,18 @@
+{% extends 'master.html' %}
+
+{% load static %}
+
+{% block content %}
+
+
+<div class="form_content">
+    {% if 'valid' in request.GET %}
+    <p style="color: aliceblue;">Thank you for your feedback</p>
+    {% endif %}
+    <form action="" method="POST" style="text-align: center;">{% csrf_token %}
+        <table style="color: yellow; margin: 20px auto;">{{my_form.as_table}}</table>
+        <input type="submit" value="submit" style="width: 150px;"> 
+    </form>
+</div>
+<p style="color:snow">POST: {{request.POST}}</p>
+{% endblock %}

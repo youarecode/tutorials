@@ -1,0 +1,30 @@
+{% extends 'master.html' %}
+
+{% load static %}
+
+{% block content %}
+
+
+{# google bootstrap grid or card #}
+<div class="container">
+  <div style="float:right;">{% include "cart_widget.html" %}</div>
+  <div class='row'>
+    {% for p in products %}
+    <div class="col-md-3">
+      <div class="card" style="width: 100%;margin: 5px 5px;">
+        <img src="{{p.image.url}}" class="card-img-top">
+        <div class="card-body" style="text-align: center;">
+          <h7 class="card-title">{{p.name}}</h7>
+          <p class="card-text">{{p.price}}&nbsp;$</p>
+        </div>
+        <div class="card-footer text-center">
+          <a href="{% url 'cart:add' p.id %}" class="btn btn-success">add to cart</a>
+        </div>
+      </div>
+    </div>  
+    {% endfor %}
+  </div>
+</div>
+
+
+{% endblock %}

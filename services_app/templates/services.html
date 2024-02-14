@@ -1,0 +1,26 @@
+{% extends 'master.html' %}
+
+{% load static %}
+
+{% block content %}
+
+    {% for s in services %}
+
+   <!-- Heading -->
+   <section class="page-section clearfix">
+    <div class="container">
+      <div class="intro">
+        <img class="intro-img img-fluid mb-3 mb-lg-0 rounded" src="{{s.image.url}}" alt="" style="width:50%;">
+        <div class="intro-text left-0 text-center bg-faded p-5 rounded">
+          <h2 class="section-heading mb-4" >
+            <span class="section-heading-lower">{{s.title}}</span>
+            <span class="section-heading-upper">{{s.content}}</span>
+          </h2>         
+        </div>
+      </div>
+    </div>
+  </section>
+  <hr>
+  <hr style="margin-top: 150px;">
+    {% endfor %}
+{% endblock %}

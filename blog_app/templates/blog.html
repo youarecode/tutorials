@@ -1,0 +1,40 @@
+{% extends 'master.html' %}
+
+{% load static %}
+
+{% block content %}
+
+    {% for p in posts %}
+
+   <!-- Heading -->
+   <section class="page-section clearfix">
+    <div class="container">
+      <div class="intro">
+        <img class="intro-img img-fluid mb-3 mb-lg-0 rounded" src="{{p.image.url}}" alt="" style="width:50%;">
+        <div class="intro-text left-0 text-center bg-faded p-5 rounded">
+          <h2 class="section-heading mb-4" >
+            <span class="section-heading-lower">{{p.title}}</span>
+            <span class="section-heading-upper">{{p.content}}</span>
+          </h2>         
+        <div style="text-align: left;font-size: 0.8em;">
+            Author:{{p.author}}
+        </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <hr>
+  <hr style="margin-top: 150px;">
+    {% endfor %}
+
+<section>
+    <div style="width: 75%; margin: auto;text-align: center; background-color: yellow;">
+    Categories: 
+    {% for c in category %}
+        <a href="{% url 'Category' c.id%}" class="links_categories">{{c.name}} </a> 
+        &nbsp;&nbsp;&nbsp;
+    {% endfor %}
+    </div>
+</section>
+
+{% endblock %}

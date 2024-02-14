@@ -275,3 +275,11 @@ Other tools
 #### Templates
 Google 'template web responsive'
 - Templates that automatically adjusts to your screen (mobile, desktop)
+
+Bootstrap
+- responsive css templates
+
+
+#### Hacks
+- Use 'tree' to get the tree structure to ask to chatgpt
+- <\!--{% tags %}--> Trying to comment a tag won't work

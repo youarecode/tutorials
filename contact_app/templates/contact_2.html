@@ -1,0 +1,33 @@
+
+
+<html>
+<head>
+    <title>
+        Product search
+    </title>
+</head>
+
+<body>
+    <h1>Contact us</h1>
+    {% if form.errors %}
+    <p style="color: red;"> Please verify that field</p>
+    {% endif %}
+
+
+    <!-- frontend designed as a backend API -->
+    <form action="" method="POST">{% csrf_token %}
+        <table>
+            {{form.as_table}}
+        </table>
+    
+    <!-- Same form but designed in frontend
+        <form action="/contact/" method="post">{% csrf_token %}
+        <p>subject <input type="text" name="subject"> </p>
+        <p>Email <input type="text" name="email"> </p>
+        <p>Message: <textarea name="message", rows=15, cols="45"></textarea> </p> -->
+        
+        <input type="submit" name="submit"> </p>
+        
+    </form>
+</body>
+</html>

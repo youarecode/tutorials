@@ -16,18 +16,28 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from django.urls import path
-from webapp import views
+from django.urls import path, include
+import webapp.views
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('index/', views.hello_world),
-    path('age/<int:age_today>/<int:year>',  views.compute_age),
-    path('machine_learning/',  views.machine_learning),
-    path('control_theory/',  views.control_theory),
-    path('search_product/',  views.search_products),
-    path('search/',  views.search),
-    path('contact/',  views.contact),
+    path('index/', webapp.views.hello_world),
+    path('age/<int:age_today>/<int:year>',  webapp.views.compute_age),
+    path('machine_learning/',  webapp.views.machine_learning),
+    path('control_theory/',  webapp.views.control_theory),
+    path('search_product/',  webapp.views.search_products),
+    path('search/',  webapp.views.search),
+
+    path('',                include('webapp.urls')),
+    path('services/',       include('services_app.urls')),
+    path('blog/',           include('blog_app.urls')),
+    path('contact/',        include('contact_app.urls')),
+    path('store/',          include('store_app.urls')),
+    path('cart/',           include('cart_app.urls')),
+    path('authentication/', include('authentication_app.urls')),
+
 
 ]
 
@@ -35,3 +45,4 @@ urlpatterns = [
 
 
 
+urlpatterns+=static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
