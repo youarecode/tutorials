@@ -6,11 +6,10 @@ class Cart:
         self.request = request
         self.session = request.session
 
-        cart = self.session.get('cart') # is there cart in this session?
+        self.cart = self.session.get('cart') # is there cart in this session?
 
-        if not cart:
-            cart = self.session['cart'] = {} #cart or self.cart??
-        self.cart = cart
+        if not self.cart:
+            self.cart = self.session['cart'] = {} #cart or self.cart??
     
     def add(self, product:Product):
         if str(product.id) not in self.cart:

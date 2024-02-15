@@ -1,20 +1,21 @@
 from django.http import HttpRequest
 from django.shortcuts import render, redirect
 from django.views.generic import View
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages, auth
+from .forms import RegisterForm
 # Create your views here.
 
 
 class VRegister(View):
     def get(self, request):
         """manages the rendering"""
-        form=UserCreationForm()
+        form=RegisterForm()
         return render(request, 'register.html', {'form':form})
     
     def post(self, request):
         """manages the shipment of forms"""
-        form = UserCreationForm(request.POST)
+        form = RegisterForm(request.POST)
         if form.is_valid():
             user = form.save()
             auth.login(request, user)
@@ -23,7 +24,8 @@ class VRegister(View):
             for msg in form.error_messages:
                 messages.error(request, form.error_messages[msg])
             return render(request, 'register.html', {'form':form})
-        
+
+
 def logout(request):
     auth.logout(request)
     return redirect('Home')
@@ -38,7 +40,7 @@ def login(request:HttpRequest):
             if user is not None:
                 auth.login(request, user)
                 return redirect('Home')
-            else: #This error should never happen, is_valid already checks if the user is logged
+            else: #This error should never happen, is_valid already checks if the user is logged in
                 messages.error(request, 'invalid login')
         else:
             messages.error(request, 'Wrong username or password')

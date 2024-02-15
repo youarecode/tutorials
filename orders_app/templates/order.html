@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Order Confirmation</title>
+</head>
+
+<body>
+<div class="container">
+    <h1>Hi {{ username }},</h1>
+    <p>Thank you for your order! Here are the details:</p>
+    <ul>
+        <li><span class="highlight">Order Number:</span> {{order.id}}</li>
+        <li><span class="highlight">User Email:</span> {{usermail}}</li>
+        <li><span class="highlight">Order Line:</span> 
+            <ul>
+                {% for order in order_line %}
+                <li>{{ order }}</li>
+                {% endfor %}
+            </ul>
+    </ul>
+</div>
+</body>
+</html>

@@ -12,5 +12,5 @@ def total_amount(request:HttpRequest):
     if request.user.is_authenticated and 'cart' in request.session:
         for key,value in request.session['cart'].items():
             total += float(value['price'])
-
+            
     return {'cart_total_amount':total}

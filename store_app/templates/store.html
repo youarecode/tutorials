@@ -7,7 +7,20 @@
 
 {# google bootstrap grid or card #}
 <div class="container">
-  <div style="float:right;">{% include "cart_widget.html" %}</div>
+  <div style="float:right;">
+    {% if request.user.is_authenticated %}
+      {% include "cart_widget.html" %}
+      {% if messages %}
+        {% for m in messages %}
+          <span class="alert alert-{{m.tags}}"> {{m}} </span>
+        {% endfor %}
+      {% endif %}
+    {% else %}
+      <div class='alert alert-danger'>
+        login to view cart
+      </div>
+    {% endif %}
+  </div>
   <div class='row'>
     {% for p in products %}
     <div class="col-md-3">
