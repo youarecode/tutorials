@@ -51,6 +51,8 @@ With this command you will have the server running at: http://127.0.0.1:8000/
 
 ```python manage.py runserver```
 
+```python manage.py runserver &```
+
 
 #### Migrate your project
 This command start the database.
